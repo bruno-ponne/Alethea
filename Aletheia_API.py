@@ -12,6 +12,7 @@ import tweepy
 
 
 # Authentication with your credentials:
+    #teste diego
 
 auth = tweepy.OAuthHandler("your key", "your secret key")
 api = tweepy.API(auth)
