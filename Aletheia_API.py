@@ -13,6 +13,7 @@ import tweepy
 
 # Authentication with your credentials:
     #teste diego
+    # Hello
 
 auth = tweepy.OAuthHandler("dUccFFYUBCdImYFvQeLVNV3ij", "RPLTQRvGix0sK6QKkNS0ZJq6y1lsc5nR5OGDahV77mydUYTplq")
 api = tweepy.API(auth)
