@@ -13,7 +13,7 @@ import tweepy
 
 # Authentication with your credentials:
 
-auth = tweepy.OAuthHandler("your key", "your secret key")
+auth = tweepy.OAuthHandler("dUccFFYUBCdImYFvQeLVNV3ij", "RPLTQRvGix0sK6QKkNS0ZJq6y1lsc5nR5OGDahV77mydUYTplq")
 api = tweepy.API(auth)
 
 # Getting some tweets:
