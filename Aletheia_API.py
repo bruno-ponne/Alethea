@@ -6,16 +6,15 @@ Created on Fri Oct  9 09:47:02 2020
 @author: Bruno
 """
 
-# To install tweepy: type "pip install tweepy"
-# in the command line
+# Modules 
+import pandas 
 import tweepy
 
 
 # Authentication with your credentials:
-    #teste diego
-    # Hello
 
-auth = tweepy.OAuthHandler("dUccFFYUBCdImYFvQeLVNV3ij", "RPLTQRvGix0sK6QKkNS0ZJq6y1lsc5nR5OGDahV77mydUYTplq")
+auth = tweepy.OAuthHandler("dUccFFYUBCdImYFvQeLVNV3ij", 
+                           "RPLTQRvGix0sK6QKkNS0ZJq6y1lsc5nR5OGDahV77mydUYTplq")
 api = tweepy.API(auth)
 
 # Getting some tweets:
@@ -26,9 +25,26 @@ tweets = api.user_timeline(screen_name="factcheckdotorg",
                            tweet_mode = 'extended'
                            )
 
+
 for info in tweets[:3]:
      print("ID: {}".format(info.id))
      print(info.created_at)
      print(info.full_text)
      print("\n")
 
+
+# Getting tweets from our three sources and saving them in a df (Adelaida)
+
+factcheckers = ["factcheckdotorg", "Politifact", "snopes"]
+
+tweets = [] 
+
+for i in factcheckers:
+   
+
+    tweets += tweepy.Cursor(api.user_timeline,id= i).items(200)
+    
+    tweets_list = [[tweet.user.screen_name, tweet.created_at, tweet.id, tweet.text] for tweet in tweets]
+    
+    tweets_df = pandas.DataFrame(tweets_list,columns=['User', 'Datetime', 'Tweet Id', 'Text'])
+    
