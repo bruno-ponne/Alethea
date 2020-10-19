@@ -48,3 +48,27 @@ for i in factcheckers:
     
     tweets_df = pandas.DataFrame(tweets_list,columns=['User', 'Datetime', 'Tweet Id', 'Text'])
     
+    
+
+# Visualizing example (See plots pane)
+
+from plotnine import * # for visualization 
+from mizani.breaks import date_breaks
+from mizani.formatters import date_format
+
+theme_set(theme_minimal()) # default theme
+
+
+plot1 = (ggplot(tweets_df, aes(x = 'Datetime', fill = 'User')) +
+       geom_histogram() +
+       scale_x_datetime(breaks=date_breaks('1 week')) +
+       labs(x = "Time in weeks", y = "Number of tweets by source")
+       )
+       
+print(plot1)
+
+
+
+
+
+    
