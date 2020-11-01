@@ -7,11 +7,9 @@ Alethea aims to aggregate data on fake news from fack checking Twitter accounts 
 The project is divided into 3 main modules documented accordingly:
 
 
-## Module 1 - The Web Application 
+## Module 1 - Web Scraping- Twitter API
 
-## Module 2 - Twitter API
-
-This module relies mostly on the Tweepy module to gather twits via the Twitter API. So far, it is composed by one function:
+This module scrapes twits via the Twitter API relying mostly on the Tweepy module. So far, it is composed by one function:
 
 **gather_twits**(*n, accounts = ["factcheckdotorg", "Politifact", "snopes"], df = True)*)
 
@@ -22,7 +20,7 @@ This function collects the last n twits from the specified accounts.
 *df*: boolean specifying whether the data should be returned as a data frame or as a list of dictionaries. The default specification is True (data frame).
 
 
-## Module 3 - Data Analysis
+## Module 2 - Data Analysis
 
 This module consists of two functions that analyse data:
 
@@ -31,3 +29,5 @@ This module consists of two functions that analyse data:
 draw_graph creates a bar graph representing the most frequent words employed in the last 200 twits published by "factcheckdotorg", "Politifact", "snopes". The result is a .png file saved in the *static* folder.
 
 *words*: integer specifying the number of words to be included in the plot.
+
+## Module 3 - The Web Application 
