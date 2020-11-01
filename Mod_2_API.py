@@ -1,4 +1,4 @@
-
+#for submission
 def gather_twits(n, 
                  accounts = ["factcheckdotorg", "Politifact", "snopes"], 
                  df = True):
