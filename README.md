@@ -33,8 +33,10 @@ draw_graph creates a bar graph representing the most frequent words employed in 
 ## Module 3 - The Web Application 
 
 This is the module that aggregates all other modules to produce a web application, using the Flask library. This module uses the functions that get the information from the Web Scrapping Module and  the fuctions that
-makes the data analysis. It  renders html file with the information incorporated with Jinja2 commands. All the required files for the proper renderization are in the directories "static" and "templates".
+make the data analysis. It  renders html file with the information incorporated with Jinja2 commands. All the required files for the proper renderization are in the directories "static" and "templates".
 
+## Running the application
+Open the Module 3 named "Mod_1_MainApp". And then type in the web browser the address http://0.0.0.0:3000
 
 ## Next Steps
 
