@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home - Alethea </title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style3.css')}}" />
+</head>
+<body>
+  <table>
+    <col width="30%"> 
+      <col width="30%"> 
+        <col width="40%"> 
+          <tr>
+            <th><img src= "{{url_for('static', filename= 'hertie.jpg')}}" height="40" width="300" ></th>
+            <th><h1 id = "title"><center> Alethea Project</center></h1></th>
+            <th>Python for Data Science</th>
+          </tr>
+          <tr>
+            <th>Website</th>
+            <th>Date</th>
+            <th>Last Twit</th>
+          </tr>
+          {% for twit in twits %}
+          <tr>
+            <td align="left">{{ twit["Author"] }}</td>
+            <td align="left">{{ twit["Date"] }}</td>
+            <td align="justify">{{ twit["Content"] }}</td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td>Most frequent words in the last twits:</td>
+            <td align="center"><img src= "{{url_for('static', filename= 'plot.png')}}" height="400" ></td>
+            <td></td>
+          </tr>
+          
+  </table>
+</body>
+</html>
