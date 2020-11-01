@@ -36,7 +36,7 @@ This is the module that aggregates all other modules to produce a web applicatio
 make the data analysis. It  renders html file with the information incorporated with Jinja2 commands. All the required files for the proper renderization are in the directories "static" and "templates".
 
 ## Running the application
-Open the Module 3 named "Mod_1_MainApp". And then type in the web browser the address http://0.0.0.0:3000
+Open the Module 3 named "Mod_3_MainApp". And then type in the web browser the address http://0.0.0.0:3000
 
 ## Next Steps
 
