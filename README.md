@@ -2,7 +2,11 @@
 
 Python Project - Autumn, 2020
 
-About Alethea:
+##About Alethea:
+
+Alethea aims to aggregate data on fake news from fack checking Twitter accounts in one web application. The goal of the app is to automatize the collection of information in one place helping the people to be informed in a fast and reliable way. 
+
+This project is divided in 3 modules and it is documented accordingly:
 
 
 ## Module 1 - The Web Application 
