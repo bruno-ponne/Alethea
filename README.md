@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 # Alethea
 
 Python Project - Autumn, 2020

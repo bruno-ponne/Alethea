@@ -44,6 +44,8 @@ def gather_twits(n,
             
     return gathered_twits
 
+data_1 = gather_twits(n=1, df=True)
+data_1.to_csv('bruno.csv')  
 
 
     
