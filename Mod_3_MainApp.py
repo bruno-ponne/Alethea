@@ -1,7 +1,7 @@
 #for submission
 from flask import Flask, render_template
 app = Flask(__name__)
-from Mod_2_API import gather_twits
+from Mod_1_API import gather_twits
 
 
 
@@ -14,5 +14,8 @@ def homepage():
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=3000)
+<<<<<<< HEAD:Mod_1_MainApp.py
     
     
+=======
+>>>>>>> 2cf04cff45c391cecf33bfdcd35dd091a2a9b940:Mod_3_MainApp.py
