@@ -3,6 +3,7 @@
 def draw_graph(words):
     import nltk as t
     import pandas
+    import random
     from gather_twits import gather_twits
     from stop_words import get_stop_words
     import string
@@ -44,15 +45,20 @@ def draw_graph(words):
 
     dic_data_frame = dic_data_frame.sort_values(by=['Counts'], 
                                                 ascending = False)
-
+    x = random.randint(1, 1000)
+    name_fig = str(x)+"_"
     top_words = dic_data_frame.head(words)
-    top_words.plot.bar()
-    plt.savefig('static/plot.png', bbox_inches = "tight")
+    top_words.plot.bar(legend=None)
+    plt.title('The top '+ str(words) + ' words used by fact-check websites')
+    plt.xlabel('Words')
+    plt.ylabel('Counts')
+    plt.savefig("static/"+name_fig+".png", bbox_inches = "tight")
+    return name_fig+".png"
 
 # Histogram:
-def plot_frequency(n = 600):
+def plot_frequency(n = 200):
         
-    from plotnine import ggplot, aes, geom_histogram,  scale_x_datetime, labs, theme_minimal 
+    from plotnine import ggplot, aes, geom_histogram,  scale_x_datetime, labs, theme_minimal, ggsave 
     from gather_twits import gather_twits
     from mizani.breaks import date_breaks
     from mizani.formatters import date_format
@@ -66,5 +72,15 @@ def plot_frequency(n = 600):
            labs(x = "Time in weeks", y = "Number of tweets by source") +
            theme_minimal()
            )
-    return print(plot1)
-           
+    ggsave(plot = plot1, filename = "test.png", path = "static/")
+
+
+def delete_plots():
+    import os
+    folder_path = ("static/")
+    all_files = os.listdir(folder_path)
+    for images in all_files:
+        if images.endswith("_.png"):
+            os.remove(os.path.join(folder_path, images))
+     
+
