@@ -1,13 +1,10 @@
----
-output:
-  html_document: default
-  pdf_document: default
----
-# Alethea
+# Alethea 
 
 Python Project - Autumn, 2020
 
-Alethea aims to aggregate data on fake news from fack checking Twitter accounts in one web application. The goal of the app is to automatize the collection of information in one place helping the people to be informed in a fast and reliable way. 
+On Github: https://github.com/brunoponne123/Alethea
+
+Alethea aims to aggregate data on fake news from fact checking Twitter accounts in one web application. The goal of the app is to automate the collection of information in one place helping the people to be informed in a fast and reliable way. 
 
 The project is divided into 3 main modules documented accordingly:
 
@@ -35,9 +32,15 @@ draw_graph creates a bar graph representing the most frequent words employed in 
 
 *words*: integer specifying the number of words to be included in the plot.
 
+***plot_frequency***(n)
+
+plot_frequency creates a histogram of the number of tweets created week by week, colored according to the website that published it. The function includes the argument 'n' which allows the specification of the total number of tweets to be scraped and plotted. The result is the printed plot. 
+
+*n*: integer specifying the number of tweets to be included in the plot.
+
 ## Module 3 - The Web Application 
 
-This is the module that aggregates all other modules to produce a web application, using the Flask library. This module uses the functions that get the information from the Web Scrapping Module and  the fuctions that
+This is the module that aggregates all other modules to produce a web application, using the Flask library. This module uses the functions that get the information from the Web Scrapping Module and  the functions that
 make the data analysis. It  renders html file with the information incorporated with Jinja2 commands. All the required files for the proper renderization are in the directories "static" and "templates".
 
 ## Running the application
