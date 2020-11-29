@@ -13,12 +13,12 @@ The project is divided into 3 main modules documented accordingly:
 
 This module scrapes twits via the Twitter API relying mostly on the Tweepy module. So far, it is composed by one function:
 
-**gather_twits**(*n, accounts = ["factcheckdotorg", "Politifact", "snopes"], df = True)*)
+**gather_tweets**(*n, accounts = ["factcheckdotorg", "Politifact", "snopes"], df = True)*)
 
-This function collects the last n twits from the specified accounts. 
+This function collects the last n tweets from the specified accounts. 
 
-*n*: integer representing the number of twits to be gathered per account;
-*accounts*: list describing the names of the Twitter accounts from which the twits will be retrieved. The default accounts are "factcheckdotorg", "Politifact", "snopes";
+*n*: integer representing the number of tweets to be gathered per account;
+*accounts*: list describing the names of the Twitter accounts from which the tweets will be retrieved. The default accounts are "factcheckdotorg", "Politifact", "snopes";
 *df*: boolean specifying whether the data should be returned as a data frame or as a list of dictionaries. The default specification is True (data frame).
 
 
@@ -28,7 +28,7 @@ This module consists of two functions that analyse data:
 
 ***draw_graph***(*words*)
 
-draw_graph creates a bar graph representing the most frequent words employed in the last 200 twits published by "factcheckdotorg", "Politifact", "snopes". The result is a .png file saved in the *static* folder.
+draw_graph creates a bar graph representing the most frequent words employed in the last 200 tweets published by "factcheckdotorg", "Politifact", "snopes". The result is a .png file saved in the *static* folder.
 
 *words*: integer specifying the number of words to be included in the plot.
 
