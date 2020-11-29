@@ -23,12 +23,4 @@ def homepage():
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=3000)
-<<<<<<< HEAD
-<<<<<<< HEAD:Mod_1_MainApp.py
-    
-    
-=======
->>>>>>> 2cf04cff45c391cecf33bfdcd35dd091a2a9b940:Mod_3_MainApp.py
-=======
 
->>>>>>> cadbc261050d66caac2e67bb4ff9d74919f8b95c
