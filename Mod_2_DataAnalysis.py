@@ -209,7 +209,7 @@ def compare_tweets():
     sns.set_style('whitegrid')
     plt.figure(figsize=(10,5))
     # create plot
-    sns.barplot(x = 'counts', y= "word", data = merged_df, hue="Candidate", palette=("mediumblue","red"))
+    sns.barplot(x = 'counts', y= "word", data = merged_df, hue="Candidate", palette=("red", "mediumblue"))
     plt.title('Fake news related words in tweets that mention or Trump or Biden')
     plt.xlabel('Counts')
     plt.ylabel('Words')
