@@ -4,7 +4,7 @@ def draw_graph(words):
     import nltk as t
     import pandas
     import random
-    from Mod_1_API import gather_tweets
+    from Mod_1_API import gather_tweets,sensing
     from stop_words import get_stop_words
     import string
     import matplotlib.pyplot as plt
@@ -268,5 +268,32 @@ def word_cloud():
     return name_fig+".png"
 
 
-     
 
+def sentiment_graphs(accounts):
+    from Mod_1_API import sensing
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    import random
+    from pylab import rcParams
+    rcParams['figure.figsize'] = 12, 8
+    import warnings
+    warnings.filterwarnings("ignore")
+    sns.set(font_scale=1.5)
+    sns.set_style("whitegrid")
+    
+    
+    sent = sensing(accounts)
+    
+        #%%Plotting the values
+    fig, ax = plt.subplots(figsize=(8, 6))
+     
+     # Plot histogram of the polarity values
+    sent.hist(bins=[-1, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75, 1],
+                  ax=ax,
+                  color="purple")   
+    y = random.randint(1, 1000)
+    name_fig = str(y)+"_"
+    sns.set_style('whitegrid')
+    plt.title("Sentiments from Tweets of Factcheckers- "+ str(accounts))
+    plt.savefig("static/"+name_fig+".png")
+    return name_fig+".png"
