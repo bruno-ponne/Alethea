@@ -1,17 +1,42 @@
-#for submission
-# Top frequent words:
-def draw_graph(words):
+# =============================================================================
+# Module 2 - Data Analysis Functions
+# =============================================================================
+
+
+def draw_graph(words=10):
+    """
+    Draws the bar plot with the top 10 words used by the three 
+    fact-check Twitter accounts. This functions relies on Module 0 to 
+    gather the tweets. It employs the nltk library to tokenize the 
+    tweets and seaborn to draw the graphs.
+    
+    Parameters
+    ----------
+    words: int
+    An integer specifying how many words should be included in the plot.
+    By default, 10 words are included.
+    
+    Returns
+    -------
+    It saves the .png file in the static folder.
+    It also returns the name of the file saved as a string.
+    This name changes every time the algorithm is run.
+    This is done to make sure the .html will retrieve the most
+    updated plot.
+    
+    """
+    
     import nltk as t
     import pandas
     import random
-    from Mod_1_API import gather_tweets,sensing
-    from stop_words import get_stop_words
+    from   Mod_1_API import gather_tweets,sensing
+    from   stop_words import get_stop_words
     import string
     import matplotlib.pyplot as plt
     import seaborn as sns
-    from wordcloud import WordCloud
+    from   wordcloud import WordCloud
+    
     stop_words = get_stop_words('english')
-
 
     x = gather_tweets(200, df=False)
     list3 = ["“","”","’", "https","'s", "s", "''","``"]
@@ -64,6 +89,19 @@ def draw_graph(words):
 
 # Histogram:
 def plot_frequency(n = 200):
+    """
+    Draws the histogram of the distribution of n tweets by date.
+    
+    Parameters
+    ----------
+    n: int
+    An integer specifying how many tweets should be analysed.
+    
+    Returns
+    -------
+    It saves the histogram as a .png file in the static folder.
+
+    """
         
     from plotnine import ggplot, aes, geom_histogram,  scale_x_datetime, labs, theme_minimal, ggsave 
     from Mod_1_API import gather_tweets
@@ -84,21 +122,62 @@ def plot_frequency(n = 200):
 
 
 def delete_plots():
+    """
+    Deletes all .png files whose names end with "_.png" from the
+    static folder.
+    _.png files are plots generated (with different names) 
+    every time the app is run.
+    
+    Parameters
+    ----------
+    There are no arguments for this function.
+    
+    Returns
+    -------
+    It deletes all _.png files from the static folder.
+
+    """
     import os
+    
     folder_path = ("static/")
     all_files = os.listdir(folder_path)
+    
     for images in all_files:
         if images.endswith("_.png"):
             os.remove(os.path.join(folder_path, images))
-            
+
+
 def compare_tweets():
+    """
+    Gathers 9,000 tweets (in total) from the three fact-check accounts.
+    Classify tweets in two categories: tweets mentioning "Trump" and
+    tweets mentioning "Biden".
+    Analyses the frequency of fake-news related words in these two
+    categories.
+    Provides a bar plot with the frequency of fake-news related words
+    for each category (Trump vs Biden).
+    It relies on Module 0 to gather the tweets.
+    
+    Parameters
+    ----------
+    There are no arguments for this function.
+    
+    Returns
+    -------
+    It saves the plot in the static folder.
+    /!\ Note: Since this function collects tweets published in a period of
+    around 3 months, it is not called every time the app is run. Moreover,
+    this function makes more sence only in the months previous to the 
+    American elections.
+    
+    """
     
     import nltk as t
     import pandas as pd
-    from stop_words import get_stop_words
+    from   stop_words import get_stop_words
     import string
     import re
-    from Mod_1_API import gather_many_tweets
+    from   Mod_1_API import gather_many_tweets
     import time
     import numpy as np
     import matplotlib.pyplot as plt
@@ -113,7 +192,7 @@ def compare_tweets():
     data_poli = gather_many_tweets("Politifact", 3000)
     list0 = [data_snopes, data_fact, data_poli]
 
-    #Trump-------------------------------------------------------------------------
+    #Trump--------------------------------------------------------------------
     list1=[]
     for data in list0:
         for element in data:
@@ -146,7 +225,11 @@ def compare_tweets():
 
 
 
-    search_key = ["false","fake","misleading", "wrong", "fraud", "innacurate","incorrect", "^lie","fabricated","fictitious", "deceit", "erroneous","distorted","unfounded","mistaken","untrue"]
+    search_key = ["false","fake","misleading", 
+                  "wrong", "fraud", "innacurate",
+                  "incorrect", "^lie","fabricated",
+                  "fictitious", "deceit", "erroneous",
+                  "distorted","unfounded","mistaken","untrue"]
     res={}
     dic_trump = {}
     for i in search_key:
@@ -155,8 +238,8 @@ def compare_tweets():
     
     
     
-#--------------------------------------------------------------------------
-# Biden:
+    #-------------------------------------------------------------------------
+    #Biden:
     list1=[]
     for data in list0:
         for element in data:
@@ -187,7 +270,6 @@ def compare_tweets():
     for element in wordsFiltered:
         dictionary.update({element: wordsFiltered.count(element)})
 
-    search_key = ["false","fake","misleading", "wrong", "fraud", "innacurate","incorrect", "^lie","fabricated","fictitious", "deceit", "erroneous","distorted","unfounded","mistaken","untrue"]
     res={}
     dic_biden = {}
     for i in search_key:
@@ -208,7 +290,6 @@ def compare_tweets():
 
     sns.set_style('whitegrid')
     plt.figure(figsize=(10,5))
-    # create plot
     sns.barplot(x = 'counts', y= "word", data = merged_df, hue="Candidate", palette=("red", "mediumblue"))
     plt.title('Fake news related words in tweets that mention or Trump or Biden')
     plt.xlabel('Counts')
@@ -216,15 +297,31 @@ def compare_tweets():
     plt.savefig("static/compare.png")
     
 def word_cloud():
+    """
+    Draws a wordcloud with the top words used by the three 
+    fact-check Twitter accounts. This functions relies on Module 0 to 
+    gather the tweets. It employs the nltk library to tokenize the 
+    tweets and wordcloud to create the image.
+    
+    Parameters
+    ----------
+    There are no arguments for this function.
+    
+    Returns
+    -------
+    It returns an image saved in the static folder.
+    
+    """
     import nltk as t
     import pandas
     import random
-    from Mod_1_API import gather_tweets
-    from stop_words import get_stop_words
+    from   Mod_1_API import gather_tweets
+    from   stop_words import get_stop_words
     import string
     import matplotlib.pyplot as plt
     import seaborn as sns
-    from wordcloud import WordCloud
+    from   wordcloud import WordCloud
+    
     stop_words = get_stop_words('english')
 
 

@@ -1,7 +1,32 @@
-#for submission
+# =============================================================================
+# Module 1 - Gathering Data
+# =============================================================================
+
 def gather_tweets(n, 
                  accounts = ["factcheckdotorg", "Politifact", "snopes"], 
                  df = True):
+    
+    """
+    Collects the last n tweets from the specified accounts.
+    
+    Parameters
+    ----------
+    n: int
+    An integer specifying how many tweets of each account should be gathered
+    
+    accounts: list
+    A list specifying the names of the accounts from which tweets will be gathered.
+    
+    df: boolean
+    If True returns a data frame with the tweets.
+    If False returns a list of dictionaries with the tweets.
+    
+    Returns
+    -------
+    A data frame or list of dictionaries with the tweets requested
+    
+    """
+    
     # Libraries:
     import tweepy
     import pandas
