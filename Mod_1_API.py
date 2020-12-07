@@ -1,7 +1,32 @@
-#for submission
+# =============================================================================
+# Module 1 - Gathering Data
+# =============================================================================
+
 def gather_tweets(n, 
                  accounts = ["factcheckdotorg", "Politifact", "snopes"], 
                  df = True):
+    
+    """
+    Collects the last n tweets from the specified accounts.
+    
+    Parameters
+    ----------
+    n: int
+    An integer specifying how many tweets of each account should be gathered
+    
+    accounts: list
+    A list specifying the names of the accounts from which tweets will be gathered.
+    
+    df: boolean
+    If True returns a data frame with the tweets.
+    If False returns a list of dictionaries with the tweets.
+    
+    Returns
+    -------
+    A data frame or list of dictionaries with the tweets requested
+    
+    """
+    
     # Libraries:
     import tweepy
     import pandas
@@ -90,6 +115,87 @@ def gather_many_tweets(account, t):
     gathered_tweets = gathered_tweets[:t]
     gathered_tweets = gathered_tweets.to_dict("records")
     return gathered_tweets
+
+def sensing(accounts):
+
+    import pandas as pd  
+    import tweepy as tw
+    import re
+    from textblob import TextBlob
+
+                
+    #%% Autentication
+    consumer_key= "NF8JKlckrqEpmU1GGvkXJTJh3"
+    consumer_secret= 'sBuazfcxTFM9PSEIpa2a64WBeODhofnHgOTx9ZBXYcTXLdO1VW'
+    access_token= "1309820560659148802-XR8dXI7lnNHX0D7ZXurqlAYDbJOt0X"
+    access_token_secret= "GRvHLEEOg83HfpwSsaZp1fRfz5Et2GF3atciIC7NNVRst"
+    
+    auth = tw.OAuthHandler(consumer_key, 
+                                   consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    api = tw.API(auth, wait_on_rate_limit=True)
+    
+    userID= accounts    
+    
+    #%% Clean text
+    
+    def clean_up(txt):
+        """Replace URLs found in a text string with nothing 
+        (i.e. it will remove the URL from the string).
+    
+        Parameters
+        ----------
+        txt : string
+            A text string that you want to parse and remove urls.
+    
+        Returns
+        -------
+        The same txt string with url's removed.
+        # """
+        #txt = re.sub(r'@[A-Za-z0-9_]+', '', txt)
+        txt = re.sub(r'@', '', txt)
+        # Remove hashtags
+        txt = re.sub(r'#', '', txt)
+        # Remove retweets:
+        txt = re.sub(r'RT', '', txt)
+        # Remove urls
+        txt = re.sub(r'https?:\/\/[A-Za-z0-9\.\/]+', '', txt)
+        txt = " ".join(re.sub("([^0-9A-Za-z \t])|(\w+:\/\/\S+)", "", txt).split())
+        
+        return " ".join(re.sub("([^0-9A-Za-z \t])|(\w+:\/\/\S+)", "", txt).split())
+    
+    #%% tweets
+   
+    tweets = tw.Cursor(api.user_timeline, 
+                            screen_name=userID, 
+                            count=None,
+                            since_id=None,
+                            max_id=None,
+                            trim_user=True,
+                            exclude_replies=True,
+                            contributor_details=False,
+                            include_entities=False,
+                            tweet_mode = 'extended'
+                            ).items(2000);
+    
+    df = pd.DataFrame(data=[clean_up(str(tweet.full_text)) for tweet in tweets],columns=[userID])
+                         
+    #%% Create textblob objects of the tweets
+        
+    sentiment_objects = [TextBlob(tweet) for tweet in df[userID]]
+    
+    sentiment_objects[0].polarity, sentiment_objects[0]
+        
+    # Create list of polarity valuesx and tweet text
+    sentiment_values = [[tweet.sentiment.polarity, str(tweet)] for tweet in sentiment_objects]  
+    sentiment_values[0]
+    
+    sentiment_df = pd.DataFrame(sentiment_values,columns = ["Polarity",str(userID)])
+        
+
+        
+    #%%Sentiment
+    return sentiment_df
 
 
 
