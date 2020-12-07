@@ -21,6 +21,12 @@ This function collects the last n tweets from the specified accounts.
 *accounts*: list describing the names of the Twitter accounts from which the tweets will be retrieved. The default accounts are "factcheckdotorg", "Politifact", "snopes";
 *df*: boolean specifying whether the data should be returned as a data frame or as a list of dictionaries. The default specification is True (data frame).
 
+**sensing**(accounts)
+
+This function analyses the sentiment for last 2000 tweets for a specific account. It returns a data frame with two columns: Column 1: the the measure of the sentiment in a positive/negative scale
+
+*accounts*:  the name of the account (the strings that follow the "@" on twitter)  
+
 
 ## Module 2 - Data Analysis
 
@@ -38,18 +44,16 @@ plot_frequency creates a histogram of the number of tweets created week by week,
 
 *n*: integer specifying the number of tweets to be included in the plot.
 
+***sentiment_graphs***(*accounts*)
+
+This function plots the graphics of the sentiment of the last 2k tweets and return a png file with the graph
+
+*accounts*:  the name of the account (the strings that follow the "@" on twitter)  
+
 ## Module 3 - The Web Application 
 
 This is the module that aggregates all other modules to produce a web application, using the Flask library. This module uses the functions that get the information from the Web Scrapping Module and  the functions that
 make the data analysis. It  renders html file with the information incorporated with Jinja2 commands. All the required files for the proper renderization are in the directories "static" and "templates".
 
 ## Running the application
-Open the Module 3 named "Mod_3_MainApp". And then type in the web browser the address http://0.0.0.0:3000
-
-## Next Steps
-
-- Improvement of the visual presentation of the Web Application
-- Implement dynamic graphics ( real-time updates) instead of statics.
-- Implement a text analysis of the data to classify the
-information in different subtopics. We plan to use in this section the nltk package or equivalent.
-- If possible, improve for a better user experience. Such as subscriptions to receive information about a specific topic.
+Open the Module 3 named "Mod_3_MainApp". And then type in the web browser the IP address that appears in the console (e.g. http://0.0.0.0:3000 or http://127.0.0.1:5000/)

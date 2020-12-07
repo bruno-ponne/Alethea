@@ -4,11 +4,7 @@
 
 from flask import Flask, render_template
 from Mod_1_API import gather_tweets
-from Mod_2_DataAnalysis import draw_graph
-from Mod_2_DataAnalysis import delete_plots
-from Mod_2_DataAnalysis import compare_tweets
-from Mod_2_DataAnalysis import word_cloud
-from Mod_2_DataAnalysis import sentiment_graphs
+from Mod_2_DataAnalysis import draw_graph, delete_plots, compare_tweets, word_cloud, sentiment_graphs
 
 app = Flask(__name__)
 

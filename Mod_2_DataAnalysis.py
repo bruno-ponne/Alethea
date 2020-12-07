@@ -367,6 +367,19 @@ def word_cloud():
 
 
 def sentiment_graphs(accounts):
+    
+    """Plot the graphics of the sentiment of the last 2k tweets
+            
+        Parameters
+        ----------
+        accounts : string
+            The twitter account to be analysed
+    
+        Returns
+        -------
+        Return the png file with the graph
+    """
+
     from Mod_1_API import sensing
     import matplotlib.pyplot as plt
     import seaborn as sns

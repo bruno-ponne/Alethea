@@ -1,5 +1,5 @@
 # =============================================================================
-# Module 1 - Gathering Data
+# Module 1 - Gathering Data and Sentiment Analysis
 # =============================================================================
 
 def gather_tweets(n, 
@@ -117,14 +117,30 @@ def gather_many_tweets(account, t):
     return gathered_tweets
 
 def sensing(accounts):
+    """
+    Analyses the sentiment for last 2000 tweets for a specific account 
+    
+    Parameters
+    ----------
+    accounts:  the name of the account (the strings that follow the "@" on twitter)  
 
+
+    Returns
+    -------
+    A data frame with two columns: Column 1: the the measure of the sentiment in a positive/negative scale
+    
+     Column 2: The cleaned text of the tweet. All symbols like hashtags and  links removed.
+    
+    """
+    
+    # Libraries
     import pandas as pd  
     import tweepy as tw
     import re
     from textblob import TextBlob
 
                 
-    #%% Autentication
+    # Autentication
     consumer_key= "NF8JKlckrqEpmU1GGvkXJTJh3"
     consumer_secret= 'sBuazfcxTFM9PSEIpa2a64WBeODhofnHgOTx9ZBXYcTXLdO1VW'
     access_token= "1309820560659148802-XR8dXI7lnNHX0D7ZXurqlAYDbJOt0X"
@@ -137,11 +153,10 @@ def sensing(accounts):
     
     userID= accounts    
     
-    #%% Clean text
-    
+    # Function to clean the text
     def clean_up(txt):
         """Replace URLs found in a text string with nothing 
-        (i.e. it will remove the URL from the string).
+        (i.e. it will remove the URL, hashtags, @ from the string).
     
         Parameters
         ----------
@@ -164,7 +179,7 @@ def sensing(accounts):
         
         return " ".join(re.sub("([^0-9A-Za-z \t])|(\w+:\/\/\S+)", "", txt).split())
     
-    #%% tweets
+    # Routine that gathers the last 2k tweets
    
     tweets = tw.Cursor(api.user_timeline, 
                             screen_name=userID, 
@@ -180,7 +195,7 @@ def sensing(accounts):
     
     df = pd.DataFrame(data=[clean_up(str(tweet.full_text)) for tweet in tweets],columns=[userID])
                          
-    #%% Create textblob objects of the tweets
+    # Create textblob objects of the tweets
         
     sentiment_objects = [TextBlob(tweet) for tweet in df[userID]]
     
@@ -191,10 +206,8 @@ def sensing(accounts):
     sentiment_values[0]
     
     sentiment_df = pd.DataFrame(sentiment_values,columns = ["Polarity",str(userID)])
-        
-
-        
-    #%%Sentiment
+               
+    # Sentiment dataframe
     return sentiment_df
 
 
