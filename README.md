@@ -8,6 +8,7 @@ Alethea aims to aggregate data on fake news from fact checking Twitter accounts 
 
 The project is divided into 3 main modules documented accordingly:
 
+Please, be patient, the app takes some minutes to run :)
 
 ## Module 1 - Web Scraping- Twitter API
 
