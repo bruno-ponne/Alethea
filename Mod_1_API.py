@@ -70,12 +70,38 @@ def gather_tweets(n,
     return gathered_tweets
 
 def gather_many_tweets(account, t):
+    """
+    Collects t tweets (up to 3000) from the specified account.
+    This function was created, because gather_tweets can collect only up to
+    200 tweets per account (API limitation)
+    /!\ Also due to API limitations, this function should not be used to gather
+    more than 3000 tweets. It takes a long time and Twitter might block
+    the user.
+    
+    Parameters
+    ----------
+    accounts: list
+    A list specifying the name of the account from which tweets will be gathered.
+    
+    t: int
+    An integer specifying how many tweets should be gathered
+    Limited automatically at 3000.
+    
+    Returns
+    -------
+    A list of dictionaries with the tweets requested
+    
+    """
     # Libraries:
     import tweepy
     import pandas
     from datetime import datetime
     import time
-
+    
+    # limiting t: 
+    if t>3000:
+        t=3000
+        
     # Authentication:
     auth = tweepy.OAuthHandler("SNXprfNdEjmTiQG4MjMI8ANoQ", 
                                "oFpNh8EuhGt1m06SJwLxl7tp3uumGAEt5SK7m5AW3IUxCls2MC")
