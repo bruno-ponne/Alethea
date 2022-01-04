@@ -2,7 +2,7 @@
 
 Python Project - Autumn, 2020
 
-On Github: https://github.com/brunoponne/Alethea
+On Github: https://github.com/bruno-ponne/Alethea
 
 Alethea aims to aggregate data on fake news from fact checking Twitter accounts in one web application. The goal of the app is to automate the collection of information in one place helping the people to be informed in a fast and reliable way. 
 
